@@ -6,11 +6,38 @@ import creditCard from "/js/credit_card_validator_functions.js";  // Use for ES6
 //creditCard.validateCard - Uses Luhn's Algorithm to check if credit card number is valid or not
 //creditCard.idCard - Function to determine which card company the card belongs to 
 
-// Write function to add and delete hyphens when necessary for input
-// - const cardNumber = document.getElementById("cardNumber");
-// - cardNumber.addEventListener("keydown", (c) => {
-// - function
-// })
+// Write eventListener to add and delete hyphens when necessary for input
+const cardNumberHyphen = document.getElementById("cardNumber");
+cardNumberHyphen.addEventListener("keydown", (c) => {
+  if(c.key === "Backspace" || c.key === "Delete"){
+    if(cardNumberHyphen.value.length === 6){
+      cardNumberHyphen.value = cardNumberHyphen.value.slice(0,5);
+    }
+    else if(cardNumberHyphen.value.length === 11){
+      cardNumberHyphen.value = cardNumberHyphen.value.slice(0,10);
+    }
+    if(cardNumberHyphen.value.length === 16){
+      cardNumberHyphen.value = cardNumberHyphen.value.slice(0,15);
+    }
+  }
+  else {
+    if(cardNumberHyphen.value.length === 4){
+      cardNumberHyphen.value += "-";
+    }
+    else if(cardNumberHyphen.value.length === 9){
+      cardNumberHyphen.value += "-";
+    }
+    else if(cardNumberHyphen.value.length === 14){
+      cardNumberHyphen.value += "-";
+    }
+  }
+});
+cardNumberHyphen.addEventListener("change", function (){
+  if(cardNumberHyphen.value.length === 16){
+    cardNumberHyphen.value = cardNumberHyphen.value.slice(0,4)+"-"+cardNumberHyphen.value.slice(4,8)+"-"+cardNumberHyphen.value.slice(8,12)+"-"+cardNumberHyphen.value.slice(12,16);
+  }
+});
+
 
 
  alert('JS first run test');
@@ -27,9 +54,9 @@ const checkCard = () => {
   const cardNumber = document.getElementById("cardNumber").value;
   let cardNumberArr = [];
   for(let i=0;i<=cardNumber.length-1;i++){
-    // if(i != 4 || i != 9 ||i != 14){
+    if(i != 4 && i != 9 && i != 14){
     cardNumberArr.push(parseInt(cardNumber[i]));
-    // }
+    }
   }
   // Catch any strings/non-numbers to validate only numbers being entered in
   const truth = cardNumberArr.some(element => {
@@ -40,9 +67,10 @@ const checkCard = () => {
   // Validate input type and put into an array
   if(truth){
     // alert('Please enter only numbers.  Thank you');
-    document.getElementById("cardCompany").innerHTML = "Please enter only numbers.";
+    document.getElementById("numValidity").style.display = "block";
+    document.getElementById("numValidity").innerHTML = "Please enter only numbers.";
   }
-  else if(typeof (parseInt(cardNumber)) === "number" && cardNumber != ""){
+  else if(cardNumberArr != "" && !(cardNumberArr.length < 16)){
     // let cardNumberArr = [];
     // for(let i=0;i<=cardNumber.length-1;i++){
     //   // if(i != 4 || i != 9 ||i != 14){
@@ -67,17 +95,22 @@ const checkCard = () => {
     // Display Card company name/id
     const cardCompanyName = creditCard.idCard(cardNumberArr);
     if(cardCompanyName === ""){
-      document.getElementById("cardCompany").innerHTML = "Company not found";
+      document.getElementById("cardCompany").innerHTML = "Company not found.";
     }
     else{
       document.getElementById("cardCompany").innerHTML = `Credit card company is ${cardCompanyName}.`;
     }
 
   }
+  // Case if there are more than 0 numbesr entered but not all 16
+  else if(cardNumberArr.length === 0){
+    document.getElementById("numValidity").style.display = "block";
+    document.getElementById("numValidity").innerHTML = "Please enter an input.";
+  }
   // Case if no input or not a number
-  else{
-    // alert('No Input Found');
-    document.getElementById("cardCompany").innerHTML = "Please enter an input.";
+  else if(cardNumberArr.length < 16){
+    document.getElementById("numValidity").style.display = "block";
+    document.getElementById("numValidity").innerHTML = "Please enter all 16 numbers.";
   }
 };
 

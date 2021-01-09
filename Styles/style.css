@@ -74,6 +74,7 @@ h1 {
 #numValidity {
   position: relative;
   top: 22.5%;
+  color: red;
 }
 #cardValidity {
   position: relative;
