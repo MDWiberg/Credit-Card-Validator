@@ -95,6 +95,7 @@ h1 {
   font-family: "Courier New", sans-serif;
   box-shadow: 0px 4px 10px black;
   border: none;
+  cursor: pointer;
 }
 #submitBtn:hover {
   color: white;
@@ -102,4 +103,7 @@ h1 {
 }
 #submitBtn:active {
   background-color: orange;
+}
+#submitBtn:focus {
+  border: none;
 }

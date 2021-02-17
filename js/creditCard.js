@@ -6,9 +6,10 @@ import creditCard from "/js/credit_card_validator_functions.js";  // Use for ES6
 //creditCard.validateCard - Uses Luhn's Algorithm to check if credit card number is valid or not
 //creditCard.idCard - Function to determine which card company the card belongs to 
 
-// Write eventListener to add and delete hyphens when necessary for input
+// Write event listener to add and delete hyphens when necessary for input
 const cardNumberHyphen = document.getElementById("cardNumber");
 cardNumberHyphen.addEventListener("keydown", (c) => {
+  // Handles deleting hyphens when deleting or backspacing
   if(c.key === "Backspace" || c.key === "Delete"){
     if(cardNumberHyphen.value.length === 6){
       cardNumberHyphen.value = cardNumberHyphen.value.slice(0,5);
@@ -20,6 +21,7 @@ cardNumberHyphen.addEventListener("keydown", (c) => {
       cardNumberHyphen.value = cardNumberHyphen.value.slice(0,15);
     }
   }
+  // Handles adding hyphens when entering the card number
   else {
     if(cardNumberHyphen.value.length === 4){
       cardNumberHyphen.value += "-";
@@ -39,9 +41,7 @@ cardNumberHyphen.addEventListener("change", function (){
 });
 
 
-
- alert('JS first run test');
-
+// Function to handle the event listener on the submit button
 const checkCard = () => {
 
   // Reset p elements
@@ -66,6 +66,7 @@ const checkCard = () => {
 
   // Validate input type and put into an array
   if(truth){
+
     // alert('Please enter only numbers.  Thank you');
     document.getElementById("numValidity").style.display = "block";
     document.getElementById("numValidity").innerHTML = "Please enter only numbers.";
@@ -82,11 +83,13 @@ const checkCard = () => {
 
     // Validate the card number 
     if(creditCard.validateCard(cardNumberArr)){
+
       // Display if valid card or not
       document.getElementById("cardValidity").style.display = "block";
       document.getElementById("cardValidity").innerHTML = "Valid Card";
     }
     else{
+
       // Display if valid card or not
       document.getElementById("cardValidity").style.display = "block";
       document.getElementById("cardValidity").innerHTML = "Invalid Card";
@@ -102,18 +105,20 @@ const checkCard = () => {
     }
 
   }
-  // Case if there are more than 0 numbesr entered but not all 16
+  // Case if there is no input
   else if(cardNumberArr.length === 0){
     document.getElementById("numValidity").style.display = "block";
     document.getElementById("numValidity").innerHTML = "Please enter an input.";
   }
-  // Case if no input or not a number
+  // Case if there are more than 0 numbers entered but not all 16
   else if(cardNumberArr.length < 16){
     document.getElementById("numValidity").style.display = "block";
     document.getElementById("numValidity").innerHTML = "Please enter all 16 numbers.";
   }
 };
 
-// Add a way for the function to be called when the button is clicked
+// Retrieve submit button
 const submitBtn = document.getElementById("submitBtn");
+
+// Add event listener with checkCard function to handle the event
 submitBtn.addEventListener("click", checkCard);

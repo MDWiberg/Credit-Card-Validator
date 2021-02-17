@@ -10,23 +10,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Styles/reset.css">
     <link rel="stylesheet" type="text/css" href="Styles/style.css">
-    <!-- <script type="text/javascript" src="js/creditCard.js"></script> -->
   </head>
   <body>
+
     <h1>Credit Card Validator</h1>
+
     <section id="creditCard">
-      <!-- <form onsubmit="checkCard();" method="GET"> -->
         <p id="cardBankName">Atlantic Union Bank</p>
         <input type="text" id="cardNumber" name="cardNumber" placeholder="1234-1234-1234-1234" minlength="19" maxlength="19" required>
         <p id="cardHolderName">JOHN DOE</p>
         <p id="cardCompanyName">VISA</p>
-        <!-- <input type="submit" value="Check"> -->
-      <!-- </form> -->
     </section>
+
     <button id="submitBtn">Check</button>
     <p id="numValidity"></p>
     <p id="cardValidity"></p>
     <p id="cardCompany"></p>
+    
     <script type="module" src="js/creditCard.js"></script>
+
   </body>
 </html>
