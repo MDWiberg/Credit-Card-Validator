@@ -6,7 +6,7 @@
 * [Status](#status)
 
 ## General info
-This project.
+A small project to test whether the input credit card number is valid or not and which company it belongs to (American Express, Discover, MasterCard and Visa).
 	
 ## Technologies
 Project is created with:
