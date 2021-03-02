@@ -1,10 +1,11 @@
-// JS script to validate caredit card number
+// JS script to validate credit/debit card number
 // Matthew Wiberg
 
 import creditCard from "/js/credit_card_validator_functions.js";  // Use for ES6/Web environment
 // const creditCard = require("./credit_card_validator_functions.js");  // Use for node environment
-//creditCard.validateCard - Uses Luhn's Algorithm to check if credit card number is valid or not
-//creditCard.idCard - Function to determine which card company the card belongs to 
+
+//creditCard.validateCard - Method uses Luhn's Algorithm to check if credit card number is valid or not
+//creditCard.idCard - Method to determine which card company the card belongs to 
 
 // Write event listener to add and delete hyphens when necessary for input
 const cardNumberHyphen = document.getElementById("cardNumber");
@@ -72,14 +73,6 @@ const checkCard = () => {
     document.getElementById("numValidity").innerHTML = "Please enter only numbers.";
   }
   else if(cardNumberArr != "" && !(cardNumberArr.length < 16)){
-    // let cardNumberArr = [];
-    // for(let i=0;i<=cardNumber.length-1;i++){
-    //   // if(i != 4 || i != 9 ||i != 14){
-    //   cardNumberArr.push(parseInt(cardNumber[i]));
-    //   // }
-    // }
-    // alert('Input Found');
-    // Deal with hyphens --------------------------
 
     // Validate the card number 
     if(creditCard.validateCard(cardNumberArr)){
