@@ -67,8 +67,6 @@ const checkCard = () => {
 
   // Validate input type and put into an array
   if(truth){
-
-    // alert('Please enter only numbers.  Thank you');
     document.getElementById("numValidity").style.display = "block";
     document.getElementById("numValidity").innerHTML = "Please enter only numbers.";
   }
@@ -88,7 +86,7 @@ const checkCard = () => {
       document.getElementById("cardValidity").innerHTML = "Invalid Card";
     }
 
-    // Display Card company name/id
+    // Display card company name/id
     const cardCompanyName = creditCard.idCard(cardNumberArr);
     if(cardCompanyName === ""){
       document.getElementById("cardCompany").innerHTML = "Company not found.";

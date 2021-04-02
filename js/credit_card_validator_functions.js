@@ -5,9 +5,9 @@ const creditCard = {
 
   // Method takes in an array parameter which is the input card number and uses Luhn's Alogrithm to determine if the number is valid or not
   validateCard(arr) {
-    // The starting number is always the second to last 
+    // The starting number is second to last in this variation of the formula
     let startIndex = arr.length-2;  
-    // Add new variable to semantic purposes; will hold the currentIndex that is being accessed
+    // Add new variable for semantic purposes; will hold the currentIndex that is being accessed
     let currentIndex = startIndex;
     // sum will hold the total of all the numbers added together
     let sum = 0;
@@ -39,10 +39,10 @@ const creditCard = {
         // Decrease currentIndex to move through the numbers
         currentIndex --;
       }
-      // Condition checks if the currentIndex is equal to -1, meaning it need to needs to add the number at the end of the array that was skipped in the beginning
+      // Condition checks if the currentIndex is equal to -1, meaning it needs to add the number at the end of the array that was skipped in the beginning
       else if(currentIndex === -1){
         sum += arr[arr.length-1];
-        // Luhn's Algorithm says that is the sum of all the numbers mod 10 is equal to 0, then it is a valid number
+        // Luhn's Algorithm says that if the sum of all the numbers mod 10 is equal to 0, then it is a valid number
         if(sum%10 === 0){
           return true;
         }
